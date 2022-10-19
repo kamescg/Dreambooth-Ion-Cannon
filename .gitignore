@@ -7,3 +7,5 @@ train.bat
 __pycache__
 */**/__pycache__
 logsoutputs/
+.ipynb_checkpoints/
+scripts
