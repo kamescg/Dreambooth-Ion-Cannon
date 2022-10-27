@@ -38,10 +38,10 @@ I'm not going to hand-hold you through how to do that, as it's a website with a 
 
 Once you're logged in and have some credit available, go to the `Create` section of the Console.
 
-Here, you'll want to make sure that the image (pre-installed software on a new instance you create) has Pytorch available on it. 
+Here, you'll want to make sure that the image (pre-installed software on a new instance you create) has Pytorch available on it.
 
 Click on `Edit Image & Config...`, highlighted below. Note that I've edited the required disk space to be 150 GB - this is _far_ in excess of what you'll need, but space costs mere pennies. Stick with about 50 GB if you're not a spendthrift, that'll do fine.
- 
+
 ![img.png](ion-cannon-images/Step1.PNG)
 
 ### Step 2
@@ -70,7 +70,7 @@ Head now to the `Instances` section of the Console (again, it's on your left).
 
 Given that you've just rented this, it'll need a minute to wake up, load Pytorch and become available for you to `Open`. It shouldn't take too long.
 
-Note: if, when you hit `Open`, it gives you a _502 Bad Gateway_, just wait another 30 seconds or so and try again - that just means your instance jumped the gun a bit. 
+Note: if, when you hit `Open`, it gives you a _502 Bad Gateway_, just wait another 30 seconds or so and try again - that just means your instance jumped the gun a bit.
 
 ### IMPORTANT NOTE
 
@@ -92,13 +92,13 @@ A new tab is going to open. Don't close (or misplace) the tab you were just in -
 
 ![img.png](ion-cannon-images/Step5.PNG)
 
-### Step 6 
+### Step 6
 
 Behold - a Jupyter notebook!
 
-Copy and paste the following line into the only available cell - 
+Copy and paste the following line into the only available cell -
 
-`!git clone https://github.com/Borgroom/Dreambooth-Ion-Cannon.git`
+`!git clone https://github.com/kamescg/Dreambooth-Ion-Cannon.git`
 
 \- and then hit `Ctrl`+`Enter`. It's going to download 16 MB worth of files. This should be near instantaneous.
 
@@ -120,7 +120,7 @@ And then into the `training_samples` directory...
 
 ### Step 9
 
-This is where you're going to put the photographs that constitute the training set for whoever you're trying to generate images for. 
+This is where you're going to put the photographs that constitute the training set for whoever you're trying to generate images for.
 
 Not _here_, exactly, but in a subdirectory with a name corresponding to whether your subject is a `man`, `woman`, `person`, `dog` or `cat` (this is up to you to decide, obviously - this has to do with regularisation, something you don't need to be overly concerned with unless you're particularly curious: refer to Kane's repository for more details).
 
@@ -131,6 +131,7 @@ Go ahead and click `New` > `Folder`, highlighted below.
 ![img.png](ion-cannon-images/Step9.PNG)
 
 ### Step 10
+
 Select the checkbox option next to the newly created `Untitled Folder`, and hit `Rename`.
 
 ![img.png](ion-cannon-images/Step10.PNG)
@@ -159,7 +160,7 @@ In this folder, you'll want to upload between 8-10 `.png` files capturing someon
 
 There's conflicting advice about whether these should be a mix of full-body, selfies and medium-length shots, but I've personally found that just selfies work fine, provided that they've got different background lighting, clothes, facial expressions and so on.
 
-Most of the prompts generated focus on portraits in any event, so the shape of the body is something of an irrelevance. 
+Most of the prompts generated focus on portraits in any event, so the shape of the body is something of an irrelevance.
 
 As an example, I've chosen [@inversebrah](https://twitter.com/inversebrah) - partially to demonstrate that `person` can be used very liberally, and also that cartoon representations work fine provided that you have enough variation in your training set!
 
@@ -167,7 +168,7 @@ It is _very_ important that these images follow the format `{identifier} {class}
 
 See `inversebrah person_001.png` et al. I actually don't know yet if uploading `.PNG` files (upper-case) causes the model training to fail - I'll get around to checking that soon, but it takes you no time to rename them if so. If you have .jpg files, you can use a site such as [this](https://jpg2png.com/) to convert them.
 
-Select all appropriate files from the upload file-system modal that pops up, and click OK. 
+Select all appropriate files from the upload file-system modal that pops up, and click OK.
 
 ![img.png](ion-cannon-images/Step13.PNG)
 
@@ -203,7 +204,7 @@ Click on `dreambooth_ion_cannon.ipynb`: a new tab will open.
 
 I've written a bit of text here that talks about - inter alia - who did the bulk of the work on this, how the naming scheme work for the training images again (just to drill it home), and some legal provisos. Underneath this text, there's a cell with two variables in it: `target_name` and `target_class`.
 
-These are the *only* things you'll need to edit. **Based on what you named the images in your training set**, edit these values now.
+These are the _only_ things you'll need to edit. **Based on what you named the images in your training set**, edit these values now.
 
 There are some other parameters there, but they are set to default values (and are explained in the notebook above that cell), so you don't _need_ to change them if you don't want to. Go and have a read in the notebook if you're curious.
 
@@ -211,12 +212,12 @@ Now, select `Cell` > `Run All` from the menu bar above the notebook.
 
 You can now... go away for a while. The Jupyter notebook is going to do a few things:
 
-* Install all of the Python package dependencies needed,
-* Fetch a copy of the Stable Diffusion v1.4 base model from a separate repo, then reconstruct it locally,
-* Train the base model with the likeness of your target using the token identifier specified in the images,
-* Prune the resulting model checkpoint from ~12 GB to ~2 GB,
-* Move the pruned model into the `/trained_models` subdirectory, and
-* Start generating images for each of several distinct prompts
+- Install all of the Python package dependencies needed,
+- Fetch a copy of the Stable Diffusion v1.4 base model from a separate repo, then reconstruct it locally,
+- Train the base model with the likeness of your target using the token identifier specified in the images,
+- Prune the resulting model checkpoint from ~12 GB to ~2 GB,
+- Move the pruned model into the `/trained_models` subdirectory, and
+- Start generating images for each of several distinct prompts
 
 ![img.png](ion-cannon-images/Step17.PNG)
 
