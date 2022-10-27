@@ -98,7 +98,7 @@ Behold - a Jupyter notebook!
 
 Copy and paste the following line into the only available cell -
 
-`!git clone https://github.com/kamescg/Dreambooth-Ion-Cannon.git#male`
+`!git clone https://github.com/kamescg/Dreambooth-Ion-Cannon.git male ; cd male ; git checkout male`
 
 \- and then hit `Ctrl`+`Enter`. It's going to download 16 MB worth of files. This should be near instantaneous.
 
